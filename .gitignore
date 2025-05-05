@@ -1,0 +1,6 @@
+# Ignore VS settings and build output
+.vs/
+bin/
+obj/
+*.user
+*.suo

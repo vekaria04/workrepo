@@ -1,0 +1,6 @@
+@NIA.OnlineApp.API_HostAddress = http://localhost:5048
+
+GET {{NIA.OnlineApp.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

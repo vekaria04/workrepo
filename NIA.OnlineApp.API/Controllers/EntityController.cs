@@ -9,17 +9,28 @@ namespace NIA.OnlineApp.API.Controllers
     public class EntityController : ControllerBase
     {
         private readonly IEntityRepository _repo;
+        private readonly IErrorLoggerRepository _logger;
 
-        public EntityController(IEntityRepository repo)
+        public EntityController(IEntityRepository repo, IErrorLoggerRepository logger)
         {
             _repo = repo;
+            _logger = logger;
         }
 
         [HttpPost]
         public async Task<IActionResult> CreateEntity([FromBody] Entity entity)
         {
-            var result = await _repo.AddAsync(entity);
-            return Ok(result);
+            try
+            {
+                entity.CreatedDate = DateTime.Now;
+                var result = await _repo.AddAsync(entity);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                await _logger.LogAsync(ex);
+                return StatusCode(500, "An error occurred.");
+            }
         }
 
         [HttpGet]

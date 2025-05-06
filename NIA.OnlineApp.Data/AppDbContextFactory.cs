@@ -7,13 +7,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Identity.Client;
 
-/// <summary>
-/// Provides a design-time factory for creating instances of AppDbContext.
-/// Required by Entity Framework Core tools (e.g., for migrations) because
-/// they cannot access the runtime dependency injection container.
-/// </summary>
-
-
 namespace NIA.OnlineApp.Data
 {
     public class AppDbContextFactory : IDesignTimeDbContextFactory<AppDbContext>

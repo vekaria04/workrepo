@@ -14,10 +14,12 @@ namespace NIA.OnlineApp.Data
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) {}
 
         public DbSet<Entity> Entities { get; set; }
+        public DbSet<ErrorLog> ErrorLogs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new EntityConfiguration());
+            modelBuilder.ApplyConfiguration(new ErrorLogConfiguration());
         }
     }
 }
